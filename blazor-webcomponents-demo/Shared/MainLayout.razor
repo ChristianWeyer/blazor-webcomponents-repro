@@ -6,7 +6,7 @@
     <MatAppBarRow>
         <MatAppBarSection>
             <MatIconButton Icon="menu" OnClick="@((e) => MenuButtonClicked())"></MatIconButton>
-            <MatAppBarTitle>Maps</MatAppBarTitle>
+            <MatAppBarTitle>Bleb Components</MatAppBarTitle>
         </MatAppBarSection>
         <MatAppBarSection Align="@MatAppBarSectionAlign.End">
             <MatIconButton Icon="favorite" Link="https://www.thinktecture.com"></MatIconButton>
@@ -21,7 +21,7 @@
                 <MatAppBarAdjust></MatAppBarAdjust>
                 <MatNavMenu Multi="true">
                     <MatNavItem Href="@navigationManager.ToAbsoluteUri("").AbsoluteUri"><MatIcon Icon="map"></MatIcon>Maps</MatNavItem>
-                    <MatNavItem Href="/fixvalues"><MatIcon Icon="map"></MatIcon>Maps - with fixed values</MatNavItem>
+                    <MatNavItem Href="/charts"><MatIcon Icon="map"></MatIcon>Charts</MatNavItem>
                 </MatNavMenu>
             </MatDrawer>
         </ChildContent>
@@ -30,7 +30,7 @@
                 <MatAppBarAdjust></MatAppBarAdjust>
                 <MatNavMenu Multi="true">
                     <MatNavItem Href="@navigationManager.ToAbsoluteUri("").AbsoluteUri"><MatIcon Icon="map"></MatIcon>Maps</MatNavItem>
-                    <MatNavItem Href="/fixvalues"><MatIcon Icon="map"></MatIcon>Maps - with fixed values</MatNavItem>
+                    <MatNavItem Href="/charts"><MatIcon Icon="map"></MatIcon>Charts</MatNavItem>
                 </MatNavMenu>
             </MatDrawer>
         </ElseContent>
