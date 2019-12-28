@@ -2,6 +2,8 @@
 
 @using System.Text.Json
 
+@implements IDisposable
+
 @inject IJSRuntime JS
 
 <h3>Charts</h3>
@@ -30,12 +32,14 @@
     private string _data = @"[{""name"": ""Germany"",""value"": 8940000},{""name"": ""USA"",""value"": 5000000},{""name"": ""France"",""value"": 7200000},{""name"": ""UK"",""value"": 6200000}]";
     private string _selectedCountry;
 
+    private DotNetObjectReference<Charts> _objectReference;
+
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
         {
-            var objectReference = DotNetObjectReference.Create(this);
-            JS.InvokeVoidAsync("interop.charts.register", objectReference);
+            _objectReference = DotNetObjectReference.Create(this);
+            JS.InvokeVoidAsync("interop.charts.register", _objectReference);
         }
     }
 
@@ -44,5 +48,15 @@
     {
         _selectedCountry = selectedData.GetProperty("name").ToString();
         StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+
+        if (_objectReference != null)
+        {
+            _objectReference.Dispose();
+        }
     }
 }
