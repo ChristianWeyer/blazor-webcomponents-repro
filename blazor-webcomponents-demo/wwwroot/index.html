@@ -23,6 +23,7 @@
 
     <script>
         onBlazorReady = function () {
+            interop.charts.init();
             interop.maps.init();
         };
     </script>
@@ -31,12 +32,12 @@
     <script src="_content/MatBlazor/dist/matBlazor.js"></script>
 
     <script src="libs/good-map.js"></script>
-
     <script src="jsinterop/goodmap.js"></script>
 
     <script src="libs/wc-piechart/polyfills.js" type="module"></script>
     <script src="libs/wc-piechart/angular-scripts.js" defer></script>
     <script src="libs/wc-piechart/wc-piechart.js" type="module"></script>
+    <script src="jsinterop/wcpiechart.js"></script>
 </body>
 
 </html>

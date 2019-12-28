@@ -1,5 +1,9 @@
 ﻿@page "/charts"
 
+@using System.Text.Json
+
+@inject IJSRuntime JS
+
 <h3>Charts</h3>
 
 <style>
@@ -16,8 +20,29 @@
         <wc-pie-chart data-values='@_data'>
         </wc-pie-chart>
     </div>
+    <div class="row">
+        <label>Current country:&nbsp;</label>
+        <label><b>@_selectedCountry</b></label>
+    </div>
 </div>
 
 @code {
     private string _data = @"[{""name"": ""Germany"",""value"": 8940000},{""name"": ""USA"",""value"": 5000000},{""name"": ""France"",""value"": 7200000},{""name"": ""UK"",""value"": 6200000}]";
+    private string _selectedCountry;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var objectReference = DotNetObjectReference.Create(this);
+            JS.InvokeVoidAsync("interop.charts.register", objectReference);
+        }
+    }
+
+    [JSInvokable]
+    public void SetSelectedCountry(JsonElement selectedData)
+    {
+        _selectedCountry = selectedData.GetProperty("name").ToString();
+        StateHasChanged();
+    }
 }
